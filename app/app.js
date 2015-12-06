@@ -1,23 +1,27 @@
 'use strict';
 
-import React, { AppRegistry, StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import React, { AppRegistry, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import Camera from 'react-native-camera';
 
 let styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
         backgroundColor: 'transparent'
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10
+    flipButton: {
+        width: 40,
+        height: 40,
+        margin: 10,
+        alignSelf: 'flex-start'
     },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333'
+    captureButton: {
+        width: 40,
+        height: 40,
+        margin: 10,
+        alignSelf: 'flex-end'
     }
 });
 
@@ -27,42 +31,35 @@ export default React.createClass({
             cameraType: Camera.constants.Type.back
         }
     },
-
     render() {
-
         return (
             <Camera
                 ref="cam"
                 style={styles.container}
-                onBarCodeRead={this._onBarCodeRead}
                 type={this.state.cameraType}
                 >
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.ios.js{'\n'}
-                    Press Cmd+R to reload
-                </Text>
-                <TouchableHighlight onPress={this._switchCamera}>
-                    <Text>The old switcheroo</Text>
+                <TouchableHighlight onPress={this.flipCamera}>
+                    <Image
+                        style={styles.flipButton}
+                        source={require('image!flip')}
+                        />
                 </TouchableHighlight>
-                <TouchableHighlight onPress={this._takePicture}>
-                    <Text>Take Picture</Text>
+                <TouchableHighlight onPress={this.takePicture}>
+                    <Image
+                        style={styles.captureButton}
+                        source={require('image!capture')}
+                        />
                 </TouchableHighlight>
             </Camera>
         );
     },
-    _onBarCodeRead(e) {
-        console.log(e);
-    },
-    _switchCamera() {
+    flipCamera() {
         var state = this.state;
         state.cameraType = state.cameraType === Camera.constants.Type.back
             ? Camera.constants.Type.front : Camera.constants.Type.back;
         this.setState(state);
     },
-    _takePicture() {
+    takePicture() {
         this.refs.cam.capture(function(err, data) {
             console.log(err, data);
         });
