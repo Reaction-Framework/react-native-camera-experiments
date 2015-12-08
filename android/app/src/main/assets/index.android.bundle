@@ -56600,59 +56600,127 @@ __d('CameraExperiment/app/app.js',function(global, require, module, exports) {  
 var styles=_reactNative.StyleSheet.create({
 container:{
 flex:1,
-justifyContent:'center',
-alignItems:'center',
+flexDirection:'row',
+justifyContent:'space-between',
+alignItems:'flex-end',
 backgroundColor:'transparent'},
 
-welcome:{
-fontSize:20,
-textAlign:'center',
-margin:10},
+flipButton:{
+width:40,
+height:40,
+margin:10,
+alignSelf:'flex-start'},
 
-instructions:{
-textAlign:'center',
-color:'#333333'}});exports.default=
+captureButton:{
+width:40,
+height:40,
+margin:10,
+alignSelf:'flex-end'}});exports.default=
 
 
 
 _reactNative2.default.createClass({displayName:'app',
+getInitialState:function(){
+return {
+cameraType:_reactNativeCamera2.default.constants.Type.back}},
+
+
 render:function(){
 return (
-_reactNative2.default.createElement(_reactNativeCamera2.default,{
-ref:'cam'},
+_reactNative2.default.createElement(_reactNativeCamera2.default,{ref:'cam',
+style:styles.container,
+type:this.state.cameraType},
+_reactNative2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.flipCamera},
+_reactNative2.default.createElement(_reactNative.Image,{style:styles.flipButton,
+source:require('image!flip')})),
 
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.welcome},'Welcome to React Native!'),
-
-
-_reactNative2.default.createElement(_reactNative.Text,{style:styles.instructions},'To get started, edit index.ios.js',
-'\n','Press Cmd+R to reload'),
-
-
-_reactNative2.default.createElement(_reactNative.TouchableHighlight,{onPress:this._takePicture},
-_reactNative2.default.createElement(_reactNative.Text,null,'Take Picture'))))},
+_reactNative2.default.createElement(_reactNative.TouchableHighlight,{onPress:this.takePicture},
+_reactNative2.default.createElement(_reactNative.Image,{style:styles.captureButton,
+source:require('image!capture')}))))},
 
 
 
 
-_onBarCodeRead:function(e){
-console.log(e)},
+flipCamera:function(){
+var state=this.state;
+state.cameraType=state.cameraType===_reactNativeCamera2.default.constants.Type.back?
+_reactNativeCamera2.default.constants.Type.front:_reactNativeCamera2.default.constants.Type.back;
+this.setState(state)},
 
-_takePicture:function(){
+takePicture:function(){
 this.refs.cam.capture(function(err,data){
 console.log(err,data)})}});
 });
-__d('react-native-camera/index.android.js',function(global, require, module, exports) {  var _require=require('react-native/Libraries/react-native/react-native.js');var requireNativeComponent=_require.requireNativeComponent;var PropTypes=_require.PropTypes;
+__d('react-native-camera/index.android.js',function(global, require, module, exports) {  Object.defineProperty(exports,"__esModule",{value:true});var _reactNative=require('react-native/Libraries/react-native/react-native.js');var _reactNative2=babelHelpers.interopRequireDefault(_reactNative);
 
-var iface={
-name:'ImageView',
-propTypes:{
-src:PropTypes.string,
-borderRadius:PropTypes.number,
-resizeMode:PropTypes.oneOf(['cover','contain','stretch'])}};
+var CameraNativeModule=_reactNative.NativeModules.CameraModule;
 
 
+var constants={
 
-module.exports=requireNativeComponent('RCTCamera',iface);
+
+Type:CameraNativeModule.Type,
+
+CaptureTarget:CameraNativeModule.CaptureTarget};
+
+
+
+
+
+var viewPropTypes=_reactNative.View.propTypes;
+
+var CameraView=_reactNative2.default.createClass({displayName:'CameraView',
+
+propTypes:babelHelpers.extends({},
+viewPropTypes,{
+captureTarget:_reactNative.PropTypes.oneOfType([
+_reactNative.PropTypes.string,
+_reactNative.PropTypes.number]),
+
+type:_reactNative.PropTypes.oneOfType([
+_reactNative.PropTypes.string,
+_reactNative.PropTypes.number])}),
+
+
+
+getDefaultProps:function(){
+return {
+type:constants.Type.back,
+captureTarget:constants.CaptureTarget.cameraRoll}},
+
+
+
+render:function(){
+return (
+_reactNative2.default.createElement(ReactCameraView,this.props))},
+
+
+
+capture:function(options,callback){
+if(arguments.length==1){
+callback=options;
+options={}}
+
+
+var defaultOptions={
+type:this.props.type,
+target:this.props.captureTarget,
+sampleSize:0};
+
+
+CameraNativeModule.capture(babelHelpers.extends(defaultOptions,options||{}),callback)}});
+
+
+
+var ReactCameraView=(0,_reactNative.requireNativeComponent)('RCTIONCameraView',CameraView);
+
+CameraView.constants=constants;exports.default=
+
+CameraView;
+});
+__d('image!flip',function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"path":"/Users/marko/Projects/react-native-experiments/camera-experiments/android/app/build/intermediates/res/merged/debug/drawable/flip.png","uri":"flip","width":200,"height":200,"deprecated":true};
+});
+__d('image!capture',function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"path":"/Users/marko/Projects/react-native-experiments/camera-experiments/android/app/build/intermediates/res/merged/debug/drawable/capture.png","uri":"capture","width":200,"height":200,"deprecated":true};
 });
 ;require("InitializeJavaScriptAppEngine");
 ;require("CameraExperiment/index.android.js");

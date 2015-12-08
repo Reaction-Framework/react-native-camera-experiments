@@ -33,22 +33,16 @@ export default React.createClass({
     },
     render() {
         return (
-            <Camera
-                ref="cam"
-                style={styles.container}
-                type={this.state.cameraType}
-                >
+            <Camera ref="cam"
+                    style={styles.container}
+                    type={this.state.cameraType}>
                 <TouchableHighlight onPress={this.flipCamera}>
-                    <Image
-                        style={styles.flipButton}
-                        source={require('image!flip')}
-                        />
+                    <Image style={styles.flipButton}
+                           source={require('image!flip')}/>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={this.takePicture}>
-                    <Image
-                        style={styles.captureButton}
-                        source={require('image!capture')}
-                        />
+                    <Image style={styles.captureButton}
+                           source={require('image!capture')}/>
                 </TouchableHighlight>
             </Camera>
         );

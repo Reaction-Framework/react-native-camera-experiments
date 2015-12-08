@@ -1,3 +1,5 @@
 rootProject.name = 'CameraExperiment'
 
 include ':app'
+include ':io.reactionframework.android.camera'
+project(':io.reactionframework.android.camera').projectDir = new File(settingsDir, '../node_modules/react-native-camera/android')
