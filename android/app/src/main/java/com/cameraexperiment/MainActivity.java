@@ -9,7 +9,7 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
-import io.reactionframework.android.camera.CameraPackage;
+import io.reactionframework.android.react.camera.CameraPackage;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
