@@ -1,3 +1,6 @@
 [submodule "node_modules/react-native-camera"]
 	path = node_modules/react-native-camera
 	url = https://github.com/Reaction-Framework/react-native-camera.git
+[submodule "node_modules/rction-image-android"]
+	path = node_modules/rction-image-android
+	url = https://github.com/Reaction-Framework/rction-image-android.git
