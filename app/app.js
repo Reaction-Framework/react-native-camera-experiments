@@ -1,9 +1,13 @@
 'use strict';
 
-import React, { AppRegistry, StyleSheet, Image, TouchableHighlight, Text } from 'react-native';
+import React, {
+    StyleSheet,
+    Image,
+    TouchableHighlight,
+    Text } from 'react-native';
 import Camera from 'react-native-camera';
 
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
@@ -61,8 +65,8 @@ export default React.createClass({
             </Camera>
         );
     },
-    changeAspect() {
-        var state = this.state;
+    async changeAspect() {
+        const state = this.state;
 
         switch (state.aspect) {
             case Camera.constants.Aspect.fill:
@@ -82,14 +86,17 @@ export default React.createClass({
         this.setState(state);
     },
     flipCamera() {
-        var state = this.state;
+        const state = this.state;
         state.cameraType = state.cameraType === Camera.constants.Type.back
             ? Camera.constants.Type.front : Camera.constants.Type.back;
         this.setState(state);
     },
-    takePicture() {
-        this.refs.cam.capture(function(err, data) {
-            console.log(err, data);
-        });
+    async takePicture() {
+        try {
+            let result = await this.refs.cam.capture();
+            console.log(result);
+        } catch(error) {
+            console.log(error);
+        }
     }
 });
