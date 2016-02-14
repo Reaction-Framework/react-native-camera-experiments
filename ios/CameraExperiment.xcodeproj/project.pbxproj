@@ -22,7 +22,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		AD6F67B81C45A6F000709171 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6F67AE1C45853600709171 /* libRCTIONCamera.a */; };
+		AD6F67B81C45A6F000709171 /* libRCTIONCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6F67AE1C45853600709171 /* libRCTIONCamera.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -517,7 +517,7 @@
 		AD6F67AE1C45853600709171 /* libRCTIONCamera.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libRCTCamera.a;
+			path = libRCTIONCamera.a;
 			remoteRef = AD6F67AD1C45853600709171 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -650,7 +650,7 @@
 				INFOPLIST_FILE = CameraExperiment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.reactionframework.cameraexperiment.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = io.reactionframework.cameraexperiment.ios;
 				PRODUCT_DISPLAY_NAME = "Camera Experiment";
 				PRODUCT_NAME = CameraExperiment;
 			};
@@ -668,7 +668,7 @@
 				INFOPLIST_FILE = CameraExperiment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.reactionframework.cameraexperiment.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = io.reactionframework.cameraexperiment.ios;
 				PRODUCT_DISPLAY_NAME = "Camera Experiment";
 				PRODUCT_NAME = CameraExperiment;
 			};
